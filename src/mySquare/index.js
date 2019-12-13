@@ -62,11 +62,6 @@ const throttle = (func, limit) => {
 const throttledMouseMove = throttle(e => onMousemove(e), 100);
 
 const onMousedown = e => {
-  const mySquare = document.getElementById('my-square');
-  console.log('onMousedown', mySquare.translateX, mySquare.translateY);
-  mySquare.x = e.clientX - 1;
-  mySquare.y = e.clientY - 1;
-
   document.addEventListener('mousemove', throttledMouseMove);
 };
 
@@ -77,6 +72,7 @@ const onMousemove = e => {
 
   const { x, y } = e;
 
+  // TODO: find out how to get these constants in a better way
   const deltaX = x - 517;
   const deltaY = y - 391;
 
