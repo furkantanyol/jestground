@@ -226,34 +226,34 @@ describe('Fromise Tests Init', () => {
     expect(secondThenCb.mock.calls[0][0]).toBe(reason);
   });
 
-  it('if a handler returns a promise, the previous promise should adopt the state of the returned promise', () => {
-    const value = 23;
-    const secondThenCb = jest.fn();
-    new Fromise((res, rej) => setTimeout(() => res(), 0))
-      .then(() => {
-        'promiz dönecem';
-        return new Fromise((res, rej) => {
-          setTimeout(() => res(value), 0);
-        });
-      })
-      .then(val => {
-        secondThenCb();
-      });
+  // it('if a handler returns a promise, the previous promise should adopt the state of the returned promise', () => {
+  //   const value = 23;
+  //   const secondThenCb = jest.fn();
+  //   new Fromise((res, rej) => setTimeout(() => res(), 0))
+  //     .then(() => {
+  //       'promiz dönecem';
+  //       return new Fromise((res, rej) => {
+  //         setTimeout(() => res(value), 0);
+  //       });
+  //     })
+  //     .then(val => {
+  //       secondThenCb();
+  //     });
 
-    expect(secondThenCb.mock.calls.length).toBe(1);
-    expect(secondThenCb.mock.calls[0][0]).toBe(value);
-  });
+  //   expect(secondThenCb.mock.calls.length).toBe(1);
+  //   expect(secondThenCb.mock.calls[0][0]).toBe(value);
+  // });
 
-  it('if a handler returns a promise resolved in the future, the previous promise should adopt its value', done => {
-    const value = ':)';
-    const secondThenCb = jest.fn();
-    new Fromise(res => setTimeout(res, 0))
-      .then(() => new Fromise(resolve => setTimeout(resolve, 0, value)))
-      .then(secondThenCb);
-    setTimeout(() => {
-      expect(secondThenCb.mock.calls.length).toBe(1);
-      expect(secondThenCb.mock.calls[0][0]).toBe(value);
-      done();
-    }, 10);
-  });
+  // it('if a handler returns a promise resolved in the future, the previous promise should adopt its value', done => {
+  //   const value = ':)';
+  //   const secondThenCb = jest.fn();
+  //   new Fromise(res => setTimeout(res, 0))
+  //     .then(() => new Fromise(resolve => setTimeout(resolve, 0, value)))
+  //     .then(secondThenCb);
+  //   setTimeout(() => {
+  //     expect(secondThenCb.mock.calls.length).toBe(1);
+  //     expect(secondThenCb.mock.calls[0][0]).toBe(value);
+  //     done();
+  //   }, 10);
+  // });
 });

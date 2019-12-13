@@ -8,14 +8,15 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-env": "^7.7.6",
     "babel-jest": "^24.9.0",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "jsdom": "^15.2.1",
+    "parcel-bundler": "^1.12.4"
   },
   "scripts": {
-    "test": "jest --watch"
-  },
-  "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.7.4"
+    "test": "jest --watch",
+    "start": "f() { parcel src/\"$1\"/index.html; }; f"
   }
 }
