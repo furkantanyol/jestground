@@ -1,7 +1,7 @@
 const PENDING = 'PENDING';
 const RESOLVED = 'RESOLVED';
 const REJECTED = 'REJECTED';
-import Fromise from './Fromise';
+import Fromise from '../Fromise';
 
 describe('Fromise Tests Init', () => {
   it('receives an executor function when constructed which is called immediately', () => {
