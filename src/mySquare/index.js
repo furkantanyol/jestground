@@ -9,37 +9,6 @@ function translate(x, y) {
   return `translate(${x}px,${y}px)`
 }
 
-function detectCollision(collider, victim) {
-  const colliderRect = collider.getBoundingClientRect()
-  const victimRect = victim.getBoundingClientRect()
-  const {
-    width: colliderRectWidth,
-    height: colliderRectHeight,
-    left: colliderRectLeft,
-    right: colliderRectRight,
-    top: colliderRectTop,
-    bottom: colliderRectBottom,
-  } = colliderRect
-
-  const {
-    left: victimRectLeft,
-    right: victimRectRight,
-    top: victimRectTop,
-    bottom: victimRectBottom,
-  } = victimRect
-
-  const collisionLeft = colliderRectLeft + colliderRectWidth > victimRectLeft
-  const collisionRight = colliderRectRight - colliderRectWidth < victimRectRight
-  const collisionTop = colliderRectTop + colliderRectHeight > victimRectTop
-  const collisionBottom =
-    colliderRectBottom - colliderRectHeight < victimRectBottom
-
-  if (collisionLeft && collisionRight && collisionTop && collisionBottom) {
-    // eslint-disable-next-line no-param-reassign
-    victim.style.opacity = 0
-  }
-}
-
 const onKeydown = e => {
   const mySquare = document.getElementById('my-square')
   const otherSquare = document.getElementById('other-square')
@@ -81,8 +50,9 @@ const onKeydown = e => {
 
 const throttle = (func, limit) => {
   let inThrottle
-  return () => {
-    // eslint-disable-next-line no-undef
+  // eslint-disable-next-line func-names
+  return function() {
+    // eslint-disable-next-line prefer-rest-params
     const args = arguments
     const context = this
     if (!inThrottle) {
@@ -95,8 +65,42 @@ const throttle = (func, limit) => {
   }
 }
 
-const onMousedown = () => {
+const throttledMouseMove = throttle(e => onMousemove(e), 100)
+
+// eslint-disable-next-line no-unused-vars
+const onMousedown = e => {
   document.addEventListener('mousemove', throttledMouseMove)
+}
+
+function detectCollision(collider, victim) {
+  const colliderRect = collider.getBoundingClientRect()
+  const victimRect = victim.getBoundingClientRect()
+  const {
+    width: colliderRectWidth,
+    height: colliderRectHeight,
+    left: colliderRectLeft,
+    right: colliderRectRight,
+    top: colliderRectTop,
+    bottom: colliderRectBottom,
+  } = colliderRect
+
+  const {
+    left: victimRectLeft,
+    right: victimRectRight,
+    top: victimRectTop,
+    bottom: victimRectBottom,
+  } = victimRect
+
+  const collisionLeft = colliderRectLeft + colliderRectWidth > victimRectLeft
+  const collisionRight = colliderRectRight - colliderRectWidth < victimRectRight
+  const collisionTop = colliderRectTop + colliderRectHeight > victimRectTop
+  const collisionBottom =
+    colliderRectBottom - colliderRectHeight < victimRectBottom
+
+  if (collisionLeft && collisionRight && collisionTop && collisionBottom) {
+    // eslint-disable-next-line no-param-reassign
+    victim.style.opacity = 0
+  }
 }
 
 const onMousemove = e => {
@@ -117,9 +121,9 @@ const onMousemove = e => {
 
   detectCollision(mySquare, otherSquare)
 }
-const throttledMouseMove = throttle(e => onMousemove(e), 100)
 
-const onMouseup = () => {
+// eslint-disable-next-line no-unused-vars
+const onMouseup = e => {
   const mySquare = document.getElementById('my-square')
 
   document.removeEventListener('mousemove', throttledMouseMove)
