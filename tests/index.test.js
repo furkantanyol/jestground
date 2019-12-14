@@ -1,14 +1,14 @@
 const myBeverage = {
   delicious: true,
-  sour: false
-};
+  sour: false,
+}
 
 describe('my beverage', () => {
   test('is delicious', () => {
-    expect(myBeverage.delicious).toBeTruthy();
-  });
+    expect(myBeverage.delicious).toBeTruthy()
+  })
 
   test('is not sour', () => {
-    expect(myBeverage.sour).toBeFalsy();
-  });
-});
+    expect(myBeverage.sour).toBeFalsy()
+  })
+})
