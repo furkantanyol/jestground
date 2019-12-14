@@ -10,6 +10,12 @@
       "configFile": ".babelrc"
     }
   },
+  "env": {
+    "browser": true
+  },
   "extends": ["airbnb-base", "plugin:jest/recommended", "prettier"],
-  "plugins": ["jest"]
+  "plugins": ["jest"],
+  "rules": {
+    "no-use-before-define": "off"
+  }
 }
