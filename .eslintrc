@@ -16,6 +16,7 @@
   "extends": ["airbnb-base", "plugin:jest/recommended", "prettier"],
   "plugins": ["jest"],
   "rules": {
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "no-plusplus": "off"
   }
 }

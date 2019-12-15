@@ -1,8 +1,10 @@
-export default function render(vdom) {
-  const { nodeName, attributes = {}, children = [] } = vdom
+import isTextNode from './isTextNode'
+
+export default function render(vnode) {
+  const { nodeName, attributes = {}, children = [] } = vnode
   let node
-  if (typeof vdom === 'string') {
-    node = document.createTextNode(vdom)
+  if (isTextNode(vnode)) {
+    node = document.createTextNode(vnode)
   } else {
     node = document.createElement(nodeName)
 
@@ -16,6 +18,8 @@ export default function render(vdom) {
       node.appendChild(render(child))
     })
   }
+
+  // container.appendChild(node)
 
   return node
 }
