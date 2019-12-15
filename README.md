@@ -2,7 +2,7 @@
 
 Just a JS test playground using Jest
 
-- vDOM
+- vDOM +
 - Implement JSON parser from scratch
 - own Promises(I have some questions about this) +
 - Collision Detection +
