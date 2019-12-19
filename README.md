@@ -2,8 +2,11 @@
 
 Just a JS test playground using Jest
 
-- vDOM +
-- Implement JSON parser from scratch
-- own Promises(I have some questions about this) +
-- Collision Detection +
-- Implement drag and drop from scratch +
+You can see some of my code examples in this repo.
+
+Implemented from scratch:
+- vDOM
+- JSON Parser
+- Promise
+- Collision Detection
+- Drag and Drop
